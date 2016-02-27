@@ -65,7 +65,7 @@ extension FlowingMenuTransitionManager {
     let tapGesture                  = UITapGestureRecognizer()
     tapGesture.numberOfTapsRequired = 1
     tapGesture.addTarget(self, action: "tapToDismissAction:")
-
+    
     view.addGestureRecognizer(tapGesture)
   }
 
@@ -160,7 +160,15 @@ extension FlowingMenuTransitionManager {
    - parameter tapGesture: The `UITapGestureRecognizer` sender object.
    */
   func tapToDismissAction(tapGesture: UITapGestureRecognizer) {
-    delegate?.flowingMenuNeedsDismissMenu(self)
+    
+    let view        = tapGesture.view!
+    
+    let xPosition    = tapGesture.locationInView(view).x
+    let menuWidth   = (delegate ?? self).flowingMenu(self, widthOfMenuView: view)
+    
+    if(xPosition>menuWidth){
+        delegate?.flowingMenuNeedsDismissMenu(self)
+    }
   }
 
   // MARK: - Building Paths
