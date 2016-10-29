@@ -32,8 +32,8 @@ import UIKit
  `UIViewControllerContextTransitioning` `transitionWasCancelled` method.
 */
 final class FlowingMenuTransitionStatus {
-  private let cancelled: Bool
-  private let context: UIViewControllerContextTransitioning?
+  fileprivate let cancelled: Bool
+  fileprivate let context: UIViewControllerContextTransitioning?
 
   // MARK: - Initializing a TransitionStatus Object
 
@@ -61,6 +61,6 @@ final class FlowingMenuTransitionStatus {
    finished normally.
   */
   func transitionWasCancelled() -> Bool {
-    return context?.transitionWasCancelled() ?? cancelled
+    return context?.transitionWasCancelled ?? cancelled
   }
 }

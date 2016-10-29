@@ -37,10 +37,16 @@ extension UIView {
    - returns: The center point of the presentation layer or the view according to
    the flag.
   */
-  func center(usePresentationLayer: Bool) -> CGPoint {
-    if usePresentationLayer, let presentationLayer = layer.presentationLayer() as? CALayer {
-      return presentationLayer.position
+  func center(_ usePresentationLayer: Bool) -> CGPoint {
+    if usePresentationLayer {
+        if let presentationLayer = layer.presentation() {
+            return presentationLayer.position
+        }
     }
+    /*
+    if usePresentationLayer, let presentationLayer = layer.presentation()! as! CALayer {
+      return presentationLayer.position
+    }*/
 
     return center
   }
